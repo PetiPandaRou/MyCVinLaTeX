@@ -1,0 +1,344 @@
+% FortySecondsCV LaTeX template
+% Copyright © 2019-2020 René Wirnata <rene.wirnata@pandascience.net>
+% Licensed under the 3-Clause BSD License. See LICENSE file for details.
+%
+% Please visit https://github.com/PandaScience/FortySecondsCV for the most
+% recent version! For bugs or feature requests, please open a new issue on
+% github.
+%
+% Contributors:
+% https://github.com/PandaScience/FortySecondsCV/graphs/contributors
+%
+% Attributions
+% ------------
+% * fortysecondscv is based on the twentysecondcv class by Carmine Spagnuolo
+%   (cspagnuolo@unisa.it), released under the MIT license and available under
+%   https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex
+% * further attributions are indicated immediately before corresponding code
+
+
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+\documentclass[
+	a4paper,
+	% 9pt,
+	% sidesectionsize=Large,
+	% showframes,
+	% vline=2.2em,
+	% maincolor=cvgreen,
+	% sidecolor=gray!50,
+	% sidetextcolor=green,
+	% sectioncolor=red,
+	% subsectioncolor=orange,
+	% itemtextcolor=black!80,
+	% sidebarwidth=0.4\paperwidth,
+	% topbottommargin=0.03\paperheight,
+	% leftrightmargin=20pt,
+	% profilepicsize=4.5cm,
+	% profilepicborderwidth=3.5pt,
+	% profilepicstyle=profilecircle,
+	% profilepiczoom=1.0,
+	% profilepicxshift=0mm,
+	% profilepicyshift=0mm,
+	% profilepicrounding=1.0cm,
+	% logowidth=4.5cm,
+	% logospace=5mm,
+	% logoposition=before,
+	% sidebarplacement=right,
+]{fortysecondscv}
+
+% fine tune line spacing
+% \usepackage{setspace}
+% \setstretch{1.1}
+
+% improve word spacing and hyphenation
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% uncomment in case you don't want any hyphenation
+\usepackage[none]{hyphenat}
+
+% take care of proper font encoding
+\ifxetexorluatex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX}
+	% \newfontfamily\headingfont[Path=fonts/]{segoeuib.ttf} % use local font
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+\fi
+
+% use a sans serif font as default
+\usepackage[sfdefault]{ClearSans}
+% \usepackage[sfdefault]{noto}
+
+% multi-language CV XeLaTeX and polyglossia (should also work with LuaLaTeX)
+% NOTE: breaks \pointskill, \membership and some spacings
+% \ifxetexorluatex
+% 	\usepackage{polyglossia}
+% 	\newfontfamily\arabicfontsf[Script=Arabic,Scale=1.5]{Amiri}
+% 	\newfontfamily\englishfontsf{Clear Sans}
+% 	\setmainfont{Amiri}
+% 	\setdefaultlanguage{arabic}
+% 	\setotherlanguage{english}
+% \fi
+
+% enable mathematical syntax for some symbols like \varnothing
+\usepackage{amssymb}
+
+% bubble diagram configuration
+\usepackage{smartdiagram}
+\smartdiagramset{
+	% default font size is \large, so adjust to harmonize with sidebar layout
+	bubble center node font = \footnotesize,
+	bubble node font = \footnotesize,
+	% default: 4cm/2.5cm; make minimum diameter relative to sidebar size
+	bubble center node size = 0.4\sidebartextwidth,
+	bubble node size = 0.25\sidebartextwidth,
+	distance center/other bubbles = 1.5em,
+	% set center bubble color
+	bubble center node color = maincolor!70,
+	% define the list of colors usable in the diagram
+	set color list = {maincolor!10, maincolor!40,
+	maincolor!20, maincolor!60, maincolor!35},
+	% sets the opacity at which the bubbles are shown
+	bubble fill opacity = 0.8,
+}
+
+%-------------------------------------------------------------------------------
+%                            PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+%% mandatory information
+% your name
+\cvname{Julia BUCHNER}
+% job title/career
+\cvjobtitle{Product Manager}
+
+%% optional information
+% profile picture
+\cvprofilepic{pics/profile.png}
+
+% NOTE: ordering in sidebar will mimic the following order
+% date of birth
+% \cvbirthday{3 Septembre 1986}
+% short address/location, use \newline if more than 1 line is required
+\cvaddress{Montpellier (34)}
+% phone number
+\cvphone{+33 (0)6 47 93 56 32}
+% personal website
+\cvsite{https://julia.buchner.fr}
+% email address
+\cvmail{julia@buchner.fr}
+% pgp key
+% \cvkey{4096R/FF00FF00}{0xAABBCCDDFF00FF00}
+% any other custom entry
+% \cvcustomdata{\faFlag}{Chinese}
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 1st PAGE
+%-------------------------------------------------------------------------------
+% add more profile sections to sidebar on first page
+\addtofrontsidebar{
+
+	\profilesection{Savoir faire}
+		\skill{\faFootballBall}{SCRUM / Product Management}
+		\skill{\faSitemap}{Gestion de projets}
+		\skill{\faChartBar}{Analyse de problèmes}
+		\skill{\faPenNib}{Rédaction documentaire}
+
+	\profilesection{Savoir être}
+		\pointskill{\faSitemap}{Organisation et rigueur}{4}[4]
+			\skill[0em]{}{Forte des mes expériences en Support et en QA, je sais 
+            optimiser mon temps de travail et communiquer en conséquent.}
+		\pointskill{\faFile}{Capacité d'analyse}{4}[4]
+			\skill[0em]{}{Travailler sur des problèmes fait partie de ma vie 
+            d'ingénieur, notamment durant mes expériences en production et au 
+            support. Je suis également capable de concevoir et mettre en place 
+            des solutions complexes pour résoudre des problèmes.}
+		\pointskill{\faGraduationCap}{Curieuse}{3}[4]
+			\skill[0em]{}{Désireuse d'apprendre, je suis toujours en recherche 
+            de nouvelles connaissances.}
+		\pointskill{\faUserFriends}{Esprit d'équipe}{3}[4]
+			\skill[0em]{}{Motivée et volontaire, je sais m'intégrer dans une 
+            équipe et travailler en collaboration avec tout le monde.}
+}
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 2nd PAGE
+%-------------------------------------------------------------------------------
+\addtobacksidebar{
+	\graphicspath{{pics/flags/}}
+
+	%\\profilesection{Projets IT}
+	%\\chartlabel{Environnements}
+
+	%\wheelchart{3.7em}{2em}{%
+	%\40/3em/maincolor!50/Agile,
+	%\15/4em/maincolor!15/Windows,
+	%\15/3em/maincolor!30/Unix,
+	%\15/3em/maincolor!20/macOS
+	%\}
+
+	%\\chartlabel{Softwares \& Languages}
+
+	%\\wheelchart{3.7em}{2em}{%
+	%\20/3em/maincolor!40/SQL,
+	%\20/3em/maincolor!15/Powershell,
+	%\30/4em/maincolor!40/Ordonnanceurs,
+	%\10/3em/maincolor!20/HTML / CSS,
+	%\15/3em/maincolor!55/\LaTeX~
+	%\}
+
+	\profilesection{Langues}
+        \pointskill{\flag{FR.png}}{French}{5}
+        \pointskill{\flag{GB.png}}{English}{4}
+        \pointskill{\flag{IT.png}}{Italien}{1}
+
+	\profilesection{Autres activités}
+        \skill{\faBookReader}{Lecture}
+            \skill[0em]{}{Grande lectrice, je lis de tout, avec une légère 
+            préférence pour la science-fiction, la bande dessinée et les mangas.}
+        \skill{\faGamepad}{Jeux vidéo}
+            \skill[0em]{}{Tombée dans la marmite toute petite, j'adore les jeux 
+			d'énigme et les récits narratifs, comme les jeux de Dontnod et 
+			Quantic Dream. En ce moment, je parcours le monde d'Elyos dans
+			Fire Emblem Engage.}
+		\skill{\faDice}{Jeux de rôle sur table}
+            \skill[0em]{}{Depuis mon adolescence, je pratique le jeux de rôle
+			sur table. En ce moment, je participe à plusieurs campagnes dans 
+			l'univers de Donjons \& Dragons.}
+        \skill{\faRunning}{Escrime}
+            \skill[0em]{}{Pendant 5 ans, j'ai pratiqué de l'escrime sportive, 
+            artistique ainsi que du sabrolaser. Je garde une activité sportive
+			régulière.}
+        \skill{\faTrain}{Voyage}
+            \skill[0em]{}{Pour mes études, j'ai vécu une année en Chine et 
+            réalisé de nombreux évènements en Europe pour mes activités 
+            bénévoles.}
+        \skill{\faCameraRetro}{Photographie}
+            \skill[0em]{}{J'ai aiguisé mon sens de l'observation durant mes 
+            différents voyages.}
+}
+
+%-------------------------------------------------------------------------------
+%                         TABLE ENTRIES RIGHT COLUMN
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\makefrontsidebar
+
+\cvsection{Expériences Professionnelles}
+\begin{cvtable}[3]
+    \cvitem{Nov. 2021 -- Oct. 2023\newline(2 ans)}{Product Manager - GitGuardian}{}
+        {
+			• Construction de la stratégie sur le produit auto-hébergé 
+			GitGuardian\newline
+			• Animation de la découverte produit avec entretiens utilisateurs,
+			rédactions de MVP et travail sur les métriques\newline
+			• Rédaction de spécifications fonctionnelles et techniques\newline
+			• Organisation de la livraison avec animation des rituels agiles
+			(daily, sprint planning, retro, roadmap,...)\newline
+			• Documentation des processes et du produit\newline
+			• Communication entre les différentes équipes en interne (Dev, QA, Commerciales) ainsi que les clients\newline
+		}
+    \cvitem{Mai 2020 -- Oct. 2021\newline (1 an et 5 mois)}{Incident Manager \& Product Owner - Shadow}{}
+        {
+            • Mise en place et amélioration des méthodologies d'escalade des
+            incidents et problèmes\newline
+            • Qualification, analyse et reproduction des escalades techniques
+            \newline
+            • Priorisation des problèmes au sein du backlog de développement
+            \newline
+            • Documentation des processes et du produit\newline
+            • Rédaction de spécifications fonctionnelles et techniques\newline
+            • Mise en place et analyse de métriques\newline
+            • Communication entre les différentes équipes (Dev, QA, Support, Community Management) ainsi que les clients\newline
+        }
+
+    \cvitem{Avril 2019 -- Mai 2020\newline (1 an)}{Ingénieur Support Logiciel - Shadow}{}
+        {
+            • Mise en place des méthodologies d'escalade des incidents et de 
+            problèmes\newline
+            • Qualification, analyse et reproduction des escalades techniques
+            \newline
+            • Documentation des processes et du produit\newline
+            • Communication entre les différentes équipes (Dev, Support, 
+            \newline Community Management)\newline
+        }
+    \cvitem{Juin 2017 -- Mai 2019\newline (2 ans)}{Responsable Technique de Compte - CA Technologies}{}
+        {
+            • Support de niveau 3 sur l'ordonnanceur ONE Automation pour les 
+            clients Grands Comptes\newline
+            • Analyse et reproduction des problématiques\newline
+            • Proposition de solution et assistance pour la mise en œuvre\newline
+            • Assistance utilisateur (configuration, administration, 
+            \newline amélioration,…)\newline
+            • Rédaction fonctionnelle et technique\newline
+        }
+\end{cvtable}
+
+
+\cvsection{Certifications}
+\begin{cvtable}[1.5]
+	\cvitem{2017}{ITIL Foundation v3}{}
+		{Information Technology Infrastructure Library}
+	\cvitem{2011}{Test of English for International Communication}{}
+		{Score: 855 / 990\\}
+\end{cvtable}
+
+
+\cvsection{Formation}
+\begin{cvtable}[1.5]
+	\cvitem{2006 -- 2011}{Science de l'Informatique, équivalent Ingénieur}{SUPINFO}
+		{Sujet de mémoire: Mise en place d'une gestion de projet SCRUM au sein 
+        d'une équipe décentralisée.}
+\end{cvtable}
+
+
+\newpage
+\makebacksidebar
+% \newgeometry{
+% 	top=\topbottommargin,
+% 	bottom=\topbottommargin,
+% 	right=\leftrightmargin,
+% 	left=\leftrightmargin
+% }
+\cvsection{Expériences Associatives}
+\begin{cvtable}[3]
+	\cvitem{2010 -- 2017\newline (7 ans)}{Bénévole \& Trésorière - StartHer}{}
+    {
+        • Gestion du système informatique de l’association\newline
+        • Mise en place d’environnements de test dans le cadre d’un projet 
+        d’évolution du site web\newline
+        • Organisation événementielle et logistique\newline
+        • Trésorerie\newline
+        • Rédaction d’articles\newline
+        MISSION: Mise en avant des femmes et de leurs parcours dans la 
+        technologie afin d'encourager la mixité et la diversité dans l’univers 
+        entrepreneurial.\newline
+    }
+	\cvitem{2008 -- 2016\newline (8 ans)}{Bénévole - Mozilla Foundation}{}
+    {    
+        • Rédaction d’articles et de documentations fonctionnelles et \newline
+        techniques\newline
+        • Organisation événementielle et animation de conférences\newline
+        • Community Management\newline
+        • Traduction et transcription\newline
+        • Mascotte\newline
+        MISSION: Défense d’Internet comme une ressource publique, ouverte et 
+        accessible à tous.\newline
+	}
+	\cvitem{2008 -- 2016\newline (8 ans)}{Bénévole - April}{}
+    {
+        • Rédaction d’articles et de documentations\newline
+        • Organisation événementielle et animation de conférences\newline
+        • Traduction et transcription\newline
+        MISSION: Défense et diffusion du Logiciel Libre et des standards 
+        ouverts.\newline
+    }
+	\cvitem{2011 -- 2012\newline (1 an)}{Rédactrice - TechCrunch France}{}{ }
+	\cvitem{2009 -- 2010\newline (1 an)}{Rédactrice - GeekInc}{}{ }
+\end{cvtable}
+
+\end{document}
