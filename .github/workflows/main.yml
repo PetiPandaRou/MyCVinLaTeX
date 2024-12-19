@@ -11,8 +11,15 @@ jobs:
         with:
           root_file: cv_fr.tex
           compiler: lualatex
+      - name: Compile LaTeX document (CV in English)
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: cv_en.tex
+          compiler: lualatex
       - name: Uploading the PDF file into GitHub artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cv_fr.pdf
-          path: cv_fr.pdf
+          name: cv_jbuchner
+          path: |
+            cv_fr.pdf
+            cv_en.pdf
