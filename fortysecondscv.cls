@@ -55,6 +55,13 @@
 \definecolor{cvsidecolor}{HTML}{E7E7E7}
 \definecolor{cvsectioncolor}{HTML}{0395DE}
 \definecolor{cvsubsectioncolor}{HTML}{4D4D4D}
+% Flexoki color set
+\definecolor{bg}{HTML}{FFFCF0}
+\definecolor{bg-2}{HTML}{F2F0E5}
+\definecolor{re}{HTML}{AF3029}
+\definecolor{tex-2}{HTML}{6F6E69}
+\definecolor{tex-3}{HTML}{575653}
+\definecolor{ui-3}{HTML}{403E3C}
 % set default values
 \colorlet{maincolor}{cvblue}
 \colorlet{sidecolor}{cvsidecolor}

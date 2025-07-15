@@ -26,17 +26,17 @@
 	% sidesectionsize=Large,
 	% showframes,
 	% vline=2.2em,
-	% maincolor=cvgreen,
-	% sidecolor=gray!50,
-	% sidetextcolor=green,
-	% sectioncolor=red,
-	% subsectioncolor=orange,
-	% itemtextcolor=black!80,
+	maincolor=re,
+	sidecolor=bg-2,
+	sidetextcolor=tex-3,
+	sectioncolor=re,
+	subsectioncolor=tex-2,
+	itemtextcolor=tex-3,
 	% sidebarwidth=0.4\paperwidth,
 	% topbottommargin=0.03\paperheight,
 	% leftrightmargin=20pt,
-	% profilepicsize=4.5cm,
-	% profilepicborderwidth=3.5pt,
+	profilepicsize=3.5cm,
+	profilepicborderwidth=2pt,
 	% profilepicstyle=profilecircle,
 	% profilepiczoom=1.0,
 	% profilepicxshift=0mm,
@@ -113,7 +113,7 @@
 % your name
 \cvname{Julia BUCHNER}
 % job title/career
-\cvjobtitle{Product Manager}
+\cvjobtitle{Senior Product Manager}
 
 %% optional information
 % profile picture
@@ -142,9 +142,21 @@
 \addtofrontsidebar{
 
 	\profilesection{Savoir faire}
-		\skill{\faFootballBall}{SCRUM / Product Management}
-		\skill{\faSitemap}{Gestion de projets}
-		\skill{\faChartBar}{Analyse de problèmes}
+
+		\chartlabel{Product Management}
+
+		\wheelchart{3.7em}{1.5em}{%
+		20/3em/maincolor!10/{UX,UI et User Flow},
+		20/3em/maincolor!50/Roadmap,
+		20/4em/maincolor!20/Discovery,
+		20/3em/maincolor!40/Data,
+		20/3em/maincolor!20/{Communi-\newline cation}
+		}
+
+		\chartlabel{Divers}
+
+		\skill{\faFootballBall}{Méthodes Agile \\(SCRUM, Shape Up, Kanban,...)}
+		\skill{\faChartBar}{Analyse de données \\(Datadog, Metabase, SQL,...)}
 		\skill{\faPenNib}{Rédaction documentaire}
 
 	\profilesection{Savoir être}
@@ -153,12 +165,8 @@
             optimiser mon temps de travail et communiquer en conséquent.}
 		\pointskill{\faFile}{Capacité d'analyse}{4}[4]
 			\skill[0em]{}{Travailler sur des problèmes fait partie de ma vie 
-            d'ingénieur, notamment durant mes expériences en production et au 
-            support. Je suis également capable de concevoir et mettre en place 
-            des solutions complexes pour résoudre des problèmes.}
-		\pointskill{\faGraduationCap}{Curieuse}{3}[4]
-			\skill[0em]{}{Désireuse d'apprendre, je suis toujours en recherche 
-            de nouvelles connaissances.}
+            d'ingénieur. Je suis capable de concevoir et mettre en place des 
+			solutions simples pour résoudre des problèmes complexes.}
 		\pointskill{\faUserFriends}{Esprit d'équipe}{3}[4]
 			\skill[0em]{}{Motivée et volontaire, je sais m'intégrer dans une 
             équipe et travailler en collaboration avec tout le monde.}
@@ -195,6 +203,16 @@
         \pointskill{\flag{GB.png}}{English}{4}
         \pointskill{\flag{IT.png}}{Italien}{1}
 
+	\sidesection{Réseaux}
+		\begin{icontable}{1.5em}{1em}
+			\social{\faLinkedin}
+				{https://www.linkedin.com/in/juliabuchner/}
+				{linkedin.com/in/juliabuchner}
+			\social{\faGithub}
+				{https://github.com/PetiPandaRou}
+				{github.com/PetiPandaRou}
+		\end{icontable}
+
 	\profilesection{Autres activités}
         \skill{\faBookReader}{Lecture}
             \skill[0em]{}{Grande lectrice, je lis de tout, avec une légère 
@@ -202,8 +220,7 @@
         \skill{\faGamepad}{Jeux vidéo}
             \skill[0em]{}{Tombée dans la marmite toute petite, j'adore les jeux 
 			d'énigme et les récits narratifs, comme les jeux de Dontnod et 
-			Quantic Dream. En ce moment, je parcours le monde d'Elyos dans
-			Fire Emblem Engage.}
+			Quantic Dream. En ce moment, je parcours le monde de Phoenix Wright.}
 		\skill{\faDice}{Jeux de rôle sur table}
             \skill[0em]{}{Depuis mon adolescence, je pratique le jeux de rôle
 			sur table. En ce moment, je participe à plusieurs campagnes dans 
@@ -219,82 +236,77 @@
         \skill{\faCameraRetro}{Photographie}
             \skill[0em]{}{J'ai aiguisé mon sens de l'observation durant mes 
             différents voyages.}
+	
 }
 
 %-------------------------------------------------------------------------------
 %                         TABLE ENTRIES RIGHT COLUMN
 %-------------------------------------------------------------------------------
 \begin{document}
-
+\pagecolor{bg}
 \makefrontsidebar
 
-\cvsection{Expériences Professionnelles}
-\begin{cvtable}[3]
-    \cvitem{Nov. 2021 -- Oct. 2023\newline(2 ans)}{Product Manager - GitGuardian}{}
-        {
-			• Construction de la stratégie sur le produit auto-hébergé 
-			GitGuardian\newline
-			• Animation de la découverte produit avec entretiens utilisateurs,
-			rédactions de MVP et travail sur les métriques\newline
-			• Rédaction de spécifications fonctionnelles et techniques\newline
-			• Organisation de la livraison avec animation des rituels agiles
-			(daily, sprint planning, retro, roadmap,...)\newline
-			• Documentation des processes et du produit\newline
-			• Communication entre les différentes équipes en interne (Dev, QA, Commerciales) ainsi que les clients\newline
-		}
-    \cvitem{Mai 2020 -- Oct. 2021\newline (1 an et 5 mois)}{Incident Manager \& Product Owner - Shadow}{}
-        {
-            • Mise en place et amélioration des méthodologies d'escalade des
-            incidents et problèmes\newline
-            • Qualification, analyse et reproduction des escalades techniques
-            \newline
-            • Priorisation des problèmes au sein du backlog de développement
-            \newline
-            • Documentation des processes et du produit\newline
-            • Rédaction de spécifications fonctionnelles et techniques\newline
-            • Mise en place et analyse de métriques\newline
-            • Communication entre les différentes équipes (Dev, QA, Support, Community Management) ainsi que les clients\newline
-        }
-
-    \cvitem{Avril 2019 -- Mai 2020\newline (1 an)}{Ingénieur Support Logiciel - Shadow}{}
-        {
-            • Mise en place des méthodologies d'escalade des incidents et de 
-            problèmes\newline
-            • Qualification, analyse et reproduction des escalades techniques
-            \newline
-            • Documentation des processes et du produit\newline
-            • Communication entre les différentes équipes (Dev, Support, 
-            \newline Community Management)\newline
-        }
-    \cvitem{Juin 2017 -- Mai 2019\newline (2 ans)}{Responsable Technique de Compte - CA Technologies}{}
-        {
-            • Support de niveau 3 sur l'ordonnanceur ONE Automation pour les 
-            clients Grands Comptes\newline
-            • Analyse et reproduction des problématiques\newline
-            • Proposition de solution et assistance pour la mise en œuvre\newline
-            • Assistance utilisateur (configuration, administration, 
-            \newline amélioration,…)\newline
-            • Rédaction fonctionnelle et technique\newline
-        }
+\cvsection{Expériences professionnelles}
+\begin{cvtable}[2.5]
+	\cvitem{Janv. 2025 -- Mars 2025}{Head of Product - Lengow}
+	{full remote}{
+		• Management d’une équipe de 5 Product Managers et 1 Product 
+		Designer\newline
+	 	• Préparation de la roadmap Produit sur l’ensemble de la plateforme
+	 	(4 produits au total)\newline
+	 	• Animation de la découverte produit avec entretiens utilisateurs, 
+	 	étude concurrentielle et travail sur les métriques\newline
+	 	• Rédaction de spécifications fonctionnelles et techniques (Go-To-Market 
+		Strategy, Product Requirements Documents, Implementation 
+		Strategy,...)\newline
+	 	• Organisation de la livraison avec animation des rituels agiles (daily, 
+		sprint planning, retro, roadmap,...)\newline
+	 	• Documentation des processes et formation de l’équipe\newline
+	 	• Communication entre les différentes équipes en interne (Dev, 
+		Commerciales, Support) ainsi que les clients
+	}
+	\cvitem{Fév. 2024 -- Déc. 2024}{Lead Product Manager- Lengow}
+	{full remote}{
+		• Management d’une équipe de 4 Product Managers et 1 Product Designer\newline
+		• Construction de la stratégie sur deux produits de la plateforme\newline
+		• Animation de la découverte produit avec entretiens utilisateurs, étude concurrentielle et travail sur les métriques\newline
+		• Rédaction de spécifications fonctionnelles et techniques\newline
+		• Organisation de la livraison avec animation des rituels agiles (daily, retro, roadmap,...)\newline
+		• Documentation des processes\newline
+		• Communication entre les différentes équipes en interne (Dev, Commerciales, Support) ainsi que les clients
+	}
+    \cvitem{Nov. 2021 -- Oct. 2023}{Product Manager - GitGuardian}
+	{Paris}{
+		• Construction de la stratégie sur le produit auto-hébergé 
+		GitGuardian\newline
+		• Animation de la découverte produit avec entretiens utilisateurs,
+		rédactions de MVP et travail sur les métriques\newline
+		• Rédaction de spécifications fonctionnelles et techniques\newline
+		• Organisation de la livraison avec animation des rituels agiles
+		(daily, sprint planning, retro, roadmap,...)\newline
+		• Documentation des processes et du produit\newline
+		• Communication entre les différentes équipes en interne (Dev, QA, Commerciales) ainsi que les clients
+	}
+    \cvitem{Mai 2020 -- Oct. 2021}{Incident Manager \& Product Owner - Shadow}
+		{full remote}
+        { \newline}
 \end{cvtable}
 
-
-\cvsection{Certifications}
+\cvsection{Formations}
+\cvsubsection{Certifications}
 \begin{cvtable}[1.5]
+	\cvitem{2024}{Design System Expertise}{}
+		{Construire, maximiser et passer à l'échelle l’adoption d’un Design
+		System}
 	\cvitem{2017}{ITIL Foundation v3}{}
-		{Information Technology Infrastructure Library}
-	\cvitem{2011}{Test of English for International Communication}{}
-		{Score: 855 / 990\\}
+		{Management et qualité des systèmes d’information et services informatiques}
 \end{cvtable}
-
-
-\cvsection{Formation}
+\cvsubsection{Études}
 \begin{cvtable}[1.5]
 	\cvitem{2006 -- 2011}{Science de l'Informatique, équivalent Ingénieur}{SUPINFO}
 		{Sujet de mémoire: Mise en place d'une gestion de projet SCRUM au sein 
         d'une équipe décentralisée.}
 \end{cvtable}
-
 
 \newpage
 \makebacksidebar
@@ -305,7 +317,19 @@
 % 	left=\leftrightmargin
 % }
 \cvsection{Expériences Associatives}
-\begin{cvtable}[3]
+\begin{cvtable}[2.5]
+	\cvitem{2024 -- Maintenant\newline (1 an)}{Rédactrice - Les sans pagEs}{}
+    {
+        • Gestion du système informatique de l’association\newline
+        • Mise en place d’environnements de test dans le cadre d’un projet 
+        d’évolution du site web\newline
+        • Organisation événementielle et logistique\newline
+        • Trésorerie\newline
+        • Rédaction d’articles\newline
+        MISSION: Mise en avant des femmes et de leurs parcours dans la 
+        technologie afin d'encourager la mixité et la diversité dans l’univers 
+        entrepreneurial.\newline
+    }
 	\cvitem{2010 -- 2017\newline (7 ans)}{Bénévole \& Trésorière - StartHer}{}
     {
         • Gestion du système informatique de l’association\newline
