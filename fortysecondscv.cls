@@ -1,5 +1,5 @@
 % FortySecondsCV LaTeX class
-% Copyright © 2019-2020 René Wirnata <rene.wirnata@pandascience.net>
+% Copyright © 2019-2022 René Wirnata <rene.wirnata@pandascience.net>
 % Licensed under the 3-Clause BSD License. See LICENSE file for details.
 %
 % Please visit https://github.com/PandaScience/FortySecondsCV for the most
@@ -22,7 +22,6 @@
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fortysecondscv}[2020/10/19 CV class]
-
 
 %-------------------------------------------------------------------------------
 %                            PROCESS CLASS OPTIONS
@@ -48,13 +47,9 @@
 	nomarginpar,
 ]{geometry}
 
-% pre-define some colors the user can choose from
-\definecolor{cvblue}{HTML}{0E5484}
-\definecolor{cvgreen}{HTML}{007170}
-\definecolor{cvred}{HTML}{8B0000}
-\definecolor{cvsidecolor}{HTML}{E7E7E7}
-\definecolor{cvsectioncolor}{HTML}{0395DE}
-\definecolor{cvsubsectioncolor}{HTML}{4D4D4D}
+%-------------------------------------------------------------------------------
+%                            CUSTOMISATION
+%-------------------------------------------------------------------------------
 % Flexoki color set
 \definecolor{bg}{HTML}{FFFCF0}
 \definecolor{bg-2}{HTML}{F2F0E5}
@@ -62,6 +57,17 @@
 \definecolor{tex-2}{HTML}{6F6E69}
 \definecolor{tex-3}{HTML}{575653}
 \definecolor{ui-3}{HTML}{403E3C}
+
+%-------------------------------------------------------------------------------
+%                            PROCESS CLASS OPTIONS
+%-------------------------------------------------------------------------------
+% pre-define some colors the user can choose from
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{cvgreen}{HTML}{007170}
+\definecolor{cvred}{HTML}{8B0000}
+\definecolor{cvsidecolor}{HTML}{E7E7E7}
+\definecolor{cvsectioncolor}{HTML}{0395DE}
+\definecolor{cvsubsectioncolor}{HTML}{4D4D4D}
 % set default values
 \colorlet{maincolor}{cvblue}
 \colorlet{sidecolor}{cvsidecolor}
@@ -77,7 +83,6 @@
 \DeclareOptionX{sectioncolor}{\colorlet{sectioncolor}{#1}}
 \DeclareOptionX{subsectioncolor}{\colorlet{subsectioncolor}{#1}}
 \DeclareOptionX{itemtextcolor}{\colorlet{itemtextcolor}{#1}}
-
 % set page margins
 \newlength\sidebarwidth%
 \newlength\topbottommargin%
@@ -120,7 +125,14 @@
 \DeclareOptionX{sidesectionsize}{%
 	\expandafter\renewcommand{\sidesectionsize}{\csname #1\endcsname}%
 }
-% \DeclareOptionX{sidesectionsize}{\renewcommand{\sidesectionsize}{\small}}
+
+% show front sidebar on all pages
+\newtoggle{tsamesidebar}
+\togglefalse{tsamesidebar}
+\DeclareOptionX{frontsidebaronallpages}{
+	\toggletrue{tsamesidebar}
+	\AddToHook{shipout/before}{\makefrontsidebar}
+}
 
 % logo settings
 \newlength\logowidth%
@@ -142,6 +154,10 @@
 	\AtBeginDocument{\apptocmd{\personaldata}{\hline}{}{}}
 }
 
+% name and job position: 'after' (default) picture, 'before', or hidden (any other value)
+\newcommand*{\nameandjobposition}{after}
+\DeclareOptionX{nameandjobposition}{\renewcommand{\nameandjobposition}{#1}}
+
 % draw vertical guideline
 \newcommand{\plotvline}{}
 \DeclareOptionX{vline}{%
@@ -152,6 +168,11 @@
 		(\leftrightmargin + #1, 0) -- (\leftrightmargin + #1, -\paperheight);
 	}
 }
+
+% date column width
+\newlength\datecolwidth
+\setlength{\datecolwidth}{0.17\textwidth}
+\DeclareOptionX{datecolwidth}{\setlength{\datecolwidth}{#1}}
 
 % pass further options to base class and load it
 \DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -195,6 +216,7 @@
 
 % provides X column type for automatic length calculations
 \RequirePackage{tabularx}
+\RequirePackage{longtable, tabu}
 
 % take care of compiler-specific packages
 \RequirePackage{ifluatex}
@@ -289,6 +311,12 @@
 % text in user-specific color
 \newcommand{\sidetext}[1]{\textcolor{sidetextcolor}{#1}}
 
+% style for name
+\newcommand*{\cvnameformat}{\Huge\color{maincolor}}
+
+% style for job title
+\newcommand*{\cvjobtitleformat}{\Large\color{black!80}}
+
 % mandatory personal information
 \newcommand*{\cvname}[1]{\renewcommand{\cvname}{#1}}
 \newcommand*{\cvjobtitle}[1]{\renewcommand{\cvjobtitle}{#1}}
@@ -359,10 +387,23 @@
 
 % TODO find a cleaner solution for consistent spacing
 \newcommand{\nameandjob}{%
-	{\Huge\color{maincolor}\cvname}\par%
+	{\cvnameformat\cvname}\par%
 	\setlength{\parskip}{2ex}
-	{\Large\color{black!80}\cvjobtitle}\par%
+	{\cvjobtitleformat\cvjobtitle}\par%
 	\setlength{\parskip}{1ex}
+}
+
+\newcommand{\nameandjobbeforepic}{%
+	\ifthenelse{\equal{\nameandjobposition}{before}}{%
+		\nameandjob
+		\vspace{1ex}
+	}{}
+}
+\newcommand{\nameandjobafterpic}{%
+	\ifthenelse{\equal{\nameandjobposition}{after}}{%
+		\vspace{1ex}
+		\nameandjob
+	}{}
 }
 
 \newcommand{\profileroundedcorners}{%
@@ -663,6 +704,9 @@
 		% most sidebar commands end with \par; increase space between them
 		\setlength{\parskip}{1ex}
 
+		% name and job - when \nameandjobposition = 'before'
+		\nameandjobbeforepic
+
 		% optionally insert logo picture before profile
 		\plotlogobefore
 
@@ -672,10 +716,8 @@
 		% optionally insert logo picture after profile
 		\plotlogoafter
 
-		\vspace{1ex}
-
-		% name and job
-		\nameandjob
+		% name and job - when \nameandjobposition = 'after'
+		\nameandjobafterpic
 
 		% personal information
 		\vspace*{0.5em}
@@ -712,31 +754,61 @@
 % tabular starred version adds space to make table as wide as \textwidth here
 \newenvironment{cvtable}[1][1]{%
 	\renewcommand{\arraystretch}{#1}%
-	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}%
+	% remove additional spacing before and after longtables
+	\setlength{\LTpre}{0pt}
+	\setlength{\LTpost}{0pt}
+	\iftoggle{tshowframes}{%
+		\begin{longtabu} to \textwidth {@{\extracolsep{\fill}}|l|l|}%
+		\hline%
+	}{%
+		\begin{longtabu} to \textwidth {@{\extracolsep{\fill}}ll}%
+	}
 }{%
-	\end{tabular*}%
+	\iftoggle{tshowframes}{%
+		\hline%
+		\end{longtabu}%
+	}{%
+		\end{longtabu}%
+	}
 }
 
 % | <keyword>      <one-line description>            |
 % use parbox if text needs to use multiple lines
 \newcommand{\cvitemshort}[2]{%
-	\parbox[t]{0.17\textwidth}{\raggedright #1}
-	& \parbox[t]{0.81\textwidth}{#2} \\}
+	\parbox[t]{\datecolwidth}{\raggedright #1}
+	& \parbox[t]{0.98\textwidth-\datecolwidth}{#2} \\}
 
 % | <date>         <bold-title>  \hfill  <location>  |
 % |                <longer description>              |
 % or, if description is empty:
 % | <date>         <title>       \hfill  <location>  |
 \newcommand{\cvitem}[4]{%
-	\parbox[t]{0.17\textwidth}{\raggedright #1} &%
-	\parbox[t]{0.81\textwidth}{%
+	\parbox[t]{\datecolwidth}{\raggedright #1} &%
+	\parbox[t]{0.98\textwidth-\datecolwidth}{%
 		\if\relax\detokenize{#4}\relax%
 			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-1em}{\raggedright #2}%
 			\hfill {\footnotesize#3}%
 		\else%
-			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-1em}{%
-				\raggedright \textbf{#2}%
-			} \hfill {\footnotesize#3} \\%
+			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-1em}{\raggedright \textbf{#2}}%
+			\hfill {\footnotesize#3} \\%
+			\textcolor{itemtextcolor}{#4}%\vspace{\parsep}%
+		\fi%
+	}\\
+}
+
+% | <date>         <bold-title>  \par\hfill  <location>  |
+% |                <longer description>              |
+% or, if description is empty:
+% | <date>         <title>       \par\hfill  <location>  |
+\newcommand{\cvitempar}[4]{%
+	\parbox[t]{\datecolwidth}{\raggedright #1} &%
+	\parbox[t]{0.98\textwidth-\datecolwidth}{%
+		\if\relax\detokenize{#4}\relax%
+			\parbox[t]{\textwidth}{\raggedright #2}%
+			\par\hfill {\footnotesize#3}%
+		\else%
+			\parbox[t]{\textwidth}{\raggedright \textbf{#2}}%
+			\par\hfill {\footnotesize#3} \\%
 			\textcolor{itemtextcolor}{#4}%\vspace{\parsep}%
 		\fi%
 	}\\
@@ -748,8 +820,8 @@
 % |                <italic author>                   |
 % |                <journal>                         |
 \newcommand{\cvpubitem}[4]{%
-	\parbox[t]{0.17\textwidth}{\raggedright #4} &
-	\parbox[t]{0.81\textwidth}{%
+	\parbox[t]{\datecolwidth}{\raggedright #4} &
+	\parbox[t]{0.98\textwidth-\datecolwidth}{%
 		\textbf{#1} \par \textit{#2} \par #3 \vspace{\parsep}%
 	}\\
 }
